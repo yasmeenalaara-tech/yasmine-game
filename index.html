@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مغامرة المادة والطاقة 🚀⚛️ - الصف الثاني الإعدادي</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo & Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        * {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 15%, #311068 0%, #17043b 55%, #09011a 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* خلفية النجوم المتلألئة */
+        .cosmic-stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                radial-gradient(2px 2px at 30px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2.5px 2.5px at 110px 150px, #fde047, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 220px 90px, #38bdf8, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 310px 240px, #fb7185, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 70px 290px, #34d399, rgba(0,0,0,0));
+            background-size: 360px 360px;
+            opacity: 0.75;
+            animation: twinkle 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.55; }
+            100% { opacity: 0.9; }
+        }
+
+        /* بطاقات الذاكرة ثلاثية الأبعاد */
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-front, .flip-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flip-back {
+            transform: rotateY(180deg);
+        }
+
+        /* حركة طفو الشهب */
+        @keyframes meteorFloat {
+            0%, 100% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(14px) rotate(1.5deg); }
+        }
+        .meteor-item {
+            animation: meteorFloat 3.2s ease-in-out infinite;
+        }
+
+        /* شعاع الليزر المتحرك */
+        .laser-beam {
+            position: absolute;
+            bottom: 45px;
+            width: 6px;
+            background: linear-gradient(to top, #38bdf8, #ffffff, #f43f5e);
+            box-shadow: 0 0 18px #38bdf8, 0 0 30px #ffffff;
+            border-radius: 9999px;
+            transform-origin: bottom center;
+            pointer-events: none;
+            z-index: 30;
+            transition: opacity 0.25s ease-out;
+        }
+
+        /* نبض أزرار الأبطال */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 18px rgba(251, 191, 36, 0.45); }
+            50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(244, 63, 94, 0.75); }
+        }
+        .btn-hero {
+            animation: pulseGlow 2.4s infinite ease-in-out;
+        }
+
+        /* اهتزاز عند الخطأ */
+        @keyframes shakeWrong {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .shake-anim {
+            animation: shakeWrong 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-between min-h-screen p-3 sm:p-5 relative">
+
+    <div class="cosmic-stars"></div>
+
+    <!-- الشريط العلوي: العنوان، المرحلة، عداد الأسئلة، النقاط -->
+    <header class="max-w-4xl mx-auto w-full bg-slate-900/85 backdrop-blur-xl rounded-3xl p-3.5 sm:p-4 border-2 border-cyan-400/40 shadow-[0_0_25px_rgba(56,189,248,0.2)] flex flex-wrap items-center justify-between gap-3 z-10">
+        <!-- هوية اللعبة -->
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-gradient-to-tr from-amber-400 via-rose-500 to-indigo-600 rounded-2xl p-0.5 shadow-lg flex items-center justify-center">
+                <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-2xl">
+                    ⚛️
+                </div>
+            </div>
+            <div>
+                <h1 class="text-base sm:text-xl font-black bg-gradient-to-r from-amber-300 via-pink-300 to-cyan-300 bg-clip-text text-transparent">
+                    مغامرة المادة والطاقة 🚀
+                </h1>
+                <p class="text-[11px] sm:text-xs font-bold text-cyan-200/90">
+                    الصف الثاني الإعدادي • الدرس الأول والثاني
+                </p>
+            </div>
+        </div>
+
+        <!-- عدادات التقدم والنقاط -->
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 bg-slate-950/75 border border-slate-700/80 px-3.5 py-2 rounded-2xl">
+            <!-- المرحلة -->
+            <div class="flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-purple-300">
+                <i class="fa-solid fa-layer-group text-purple-400"></i>
+                <span>المرحلة: <strong id="stageIndicator" class="text-white">1/3</strong></span>
+            </div>
+            <div class="h-5 w-0.5 bg-slate-700"></div>
+            <!-- عداد الأسئلة -->
+            <div class="flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-emerald-300">
+                <i class="fa-solid fa-circle-question text-emerald-400"></i>
+                <span>سؤال: <strong id="questionCounter" class="text-white">1 / 10</strong></span>
+            </div>
+            <div class="h-5 w-0.5 bg-slate-700"></div>
+            <!-- النقاط -->
+            <div class="flex items-center gap-1.5">
+                <i class="fa-solid fa-gem text-cyan-400 text-base animate-bounce"></i>
+                <span class="font-black text-base sm:text-lg text-amber-300" id="totalScore">0</span>
+            </div>
+            <div class="h-5 w-0.5 bg-slate-700"></div>
+            <!-- سلسلة التميز -->
+            <div class="flex items-center gap-1 text-xs font-black text-orange-400">
+                <i class="fa-solid fa-fire"></i>
+                <span id="streakDisplay">0x</span>
+            </div>
+            <div class="h-5 w-0.5 bg-slate-700"></div>
+            <!-- زر الصوت -->
+            <button onclick="audioFx.toggleMute()" id="muteBtn" class="text-slate-300 hover:text-white transition px-1" title="كتم أو تشغيل الصوت">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- منطقة اللعب الرئيسية -->
+    <main class="max-w-4xl mx-auto w-full my-4 sm:my-6 z-10 flex-grow flex items-center justify-center">
+
+        <!-- 0. شاشة البداية الترحيبية -->
+        <section id="screen-start" class="w-full bg-slate-900/90 backdrop-blur-2xl rounded-3xl p-6 sm:p-10 border-2 border-indigo-400/40 shadow-2xl text-center">
+            <div class="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-extrabold px-4 py-1.5 rounded-full mb-4">
+                <span>🧪 مختبر الفضاء التفاعلي</span>
+                <span>•</span>
+                <span>10 تحديات ممتعة</span>
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-snug">
+                أهلاً بك يا بطل العلوم في مغامرة <span class="text-cyan-300">المادة والطاقة</span>! 🌟
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
+                استعد لاختبار معلوماتك في الدرس الأول والثاني بطريقة تفاعلية مبتكرة عبر 3 مراحل مشوّقة: مدفع الليزر، بطاقات المختبر، والخزنة الذهبية!
+            </p>
+
+            <!-- استعراض المراحل الثلاث -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 text-right">
+                <div class="bg-slate-800/80 border border-cyan-400/30 rounded-2xl p-4">
+                    <div class="text-2xl mb-1.5">☄️</div>
+                    <h3 class="font-black text-cyan-300 text-base">1. مدفع الشهب</h3>
+                    <p class="text-xs text-slate-300 mt-1">فجّر الشهاب الذي يحمل الإجابة الصحيحة بالليزر (الأسئلة 1 - 4).</p>
+                </div>
+                <div class="bg-slate-800/80 border border-pink-400/30 rounded-2xl p-4">
+                    <div class="text-2xl mb-1.5">🃏</div>
+                    <h3 class="font-black text-pink-300 text-base">2. بطاقات المختبر</h3>
+                    <p class="text-xs text-slate-300 mt-1">اقلب البطاقات وطابق كل مفهوم علمي بنتيجته (الأسئلة 5 - 7).</p>
+                </div>
+                <div class="bg-slate-800/80 border border-amber-400/30 rounded-2xl p-4">
+                    <div class="text-2xl mb-1.5">🔐</div>
+                    <h3 class="font-black text-amber-300 text-base">3. خزنة الشفرات</h3>
+                    <p class="text-xs text-slate-300 mt-1">أدر الترس الرقمي لفتح أقفال الخزنة الفضائية (الأسئلة 8 - 10).</p>
+                </div>
+            </div>
+
+            <button onclick="startFullAdventure()" class="btn-hero py-4 px-10 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 hover:opacity-95 text-white font-black text-lg sm:text-xl rounded-2xl shadow-xl transition active:scale-95 inline-flex items-center gap-3">
+                <span>ابدأ المغامرة الآن</span>
+                <i class="fa-solid fa-rocket"></i>
+            </button>
+        </section>
+
+        <!-- 1. المرحلة الأولى: مدفع الليزر والشهب الفضائية (الأسئلة 1 - 4) -->
+        <section id="screen-meteor" class="hidden w-full bg-slate-900/90 backdrop-blur-2xl rounded-3xl p-5 sm:p-7 border-2 border-cyan-400/45 shadow-2xl relative overflow-hidden">
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+                <span class="bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 text-xs font-black px-3.5 py-1.5 rounded-full">
+                    ☄️ المرحلة الأولى: مدفع الليزر والشهب
+                </span>
+                <span id="meteorSubProgress" class="text-xs font-extrabold text-slate-300">
+                    التحدي 1 من 4
+                </span>
+            </div>
+
+            <!-- صندوق السؤال -->
+            <div class="bg-gradient-to-r from-slate-800 to-indigo-950/90 border-2 border-cyan-400/30 p-4 sm:p-5 rounded-2xl text-center shadow-lg mb-4">
+                <span class="text-xs font-bold text-cyan-300 block mb-1">صوّب مدفعك نحو الإجابة الصحيحة:</span>
+                <h3 id="meteorQuestionText" class="text-lg sm:text-2xl font-black text-amber-300 leading-snug">
+                    السؤال يظهر هنا...
+                </h3>
+            </div>
+
+            <!-- ساحة الشهب الفضائية ومدفع السفينة -->
+            <div id="meteorArena" class="relative w-full min-h-[310px] sm:min-h-[330px] bg-slate-950/75 border-2 border-dashed border-cyan-500/30 rounded-3xl p-4 flex flex-col justify-between overflow-hidden">
+                <!-- شبكة الشهب الأربعة -->
+                <div id="meteorGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 z-10 my-auto">
+                    <!-- يتم توليد الشهب الأربعة هنا -->
+                </div>
+
+                <!-- قاعدة مدفع الليزر السفلي -->
+                <div class="text-center pt-4 mt-2 border-t border-slate-800/80 relative z-20">
+                    <div id="spaceshipCannon" class="inline-block text-4xl sm:text-5xl transition-transform duration-200 drop-shadow-[0_0_15px_rgba(56,189,248,0.85)]">
+                        🚀
+                    </div>
+                    <p class="text-[11px] sm:text-xs text-cyan-200/80 font-bold mt-1">
+                        اضغط على الشهاب الصحيح لإطلاق شعاع الليزر وتدميره! 💥
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. المرحلة الثانية: بطاقات المختبر السحرية (الأسئلة 5 - 7 + بطاقة إضافية للمطابقة) -->
+        <section id="screen-memory" class="hidden w-full bg-slate-900/90 backdrop-blur-2xl rounded-3xl p-5 sm:p-7 border-2 border-pink-400/45 shadow-2xl">
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+                <span class="bg-pink-500/20 border border-pink-400/50 text-pink-300 text-xs font-black px-3.5 py-1.5 rounded-full">
+                    🃏 المرحلة الثانية: بطاقات المختبر السحرية
+                </span>
+                <span id="memorySubProgress" class="text-xs font-extrabold text-emerald-300">
+                    تمت مطابقة: 0 / 4 أزواج
+                </span>
+            </div>
+
+            <div class="text-center mb-5">
+                <h3 class="text-xl sm:text-2xl font-black text-white mb-1">
+                    طابق كل حالة علمية بالنتيجة الصحيحة لها 🧠✨
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-300">
+                    اقلب بطاقتين في كل محاولة لربط المفهوم العلمي بإجابته الصحيحة (الأسئلة 5 إلى 7)
+                </p>
+            </div>
+
+            <!-- شبكة البطاقات (8 بطاقات = 4 أزواج) -->
+            <div id="cardsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto">
+                <!-- يتم توليد البطاقات هنا -->
+            </div>
+        </section>
+
+        <!-- 3. المرحلة الثالثة: فك شفرة الخزنة الفضائية (الأسئلة 8 - 10) -->
+        <section id="screen-safe" class="hidden w-full bg-slate-900/90 backdrop-blur-2xl rounded-3xl p-5 sm:p-8 border-2 border-amber-400/45 shadow-2xl text-center">
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-5">
+                <span class="bg-amber-500/20 border border-amber-400/50 text-amber-300 text-xs font-black px-3.5 py-1.5 rounded-full">
+                    🔐 المرحلة الثالثة: خزنة الشفرات الفضائية
+                </span>
+                <span id="safeSubProgress" class="text-xs font-extrabold text-slate-300">
+                    القفل 1 من 3
+                </span>
+            </div>
+
+            <!-- شاشة اللغز -->
+            <div class="max-w-xl mx-auto bg-gradient-to-br from-amber-500/15 via-slate-800/90 to-indigo-900/40 border-2 border-dashed border-amber-400/50 p-5 sm:p-6 rounded-3xl mb-6 shadow-inner">
+                <div class="w-14 h-14 bg-amber-400/20 text-amber-300 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-3">
+                    <i class="fa-solid fa-vault"></i>
+                </div>
+                <span class="text-xs font-bold text-amber-300 block mb-1">أكمل العبارة لفتح قفل الخزنة:</span>
+                <h3 id="safeQuestionText" class="text-lg sm:text-2xl font-black text-white leading-relaxed">
+                    السؤال يظهر هنا...
+                </h3>
+            </div>
+
+            <!-- قرص التروس الدوار -->
+            <div id="safeDialBox" class="max-w-md mx-auto my-6 bg-slate-950/90 border-2 border-amber-400/60 rounded-3xl p-5 shadow-[0_0_25px_rgba(245,158,11,0.2)]">
+                <span class="text-xs font-bold text-slate-300 block mb-3">
+                    أدر الترس بالأسهم (أو اختر من الأزرار) لتحديد الشفرة الصحيحة:
+                </span>
+                <div class="flex items-center justify-center gap-3">
+                    <button onclick="rotateSafeDial(-1)" class="w-12 h-12 sm:w-14 sm:h-14 bg-amber-500/20 hover:bg-amber-500/40 border-2 border-amber-400/60 rounded-2xl flex items-center justify-center text-amber-300 text-xl transition active:scale-90" title="السابق">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <div id="dialDisplay" class="flex-1 py-4 px-3 bg-gradient-to-r from-amber-500/25 via-orange-500/25 to-amber-500/25 border-2 border-amber-300 rounded-2xl font-black text-lg sm:text-2xl text-amber-200 shadow-lg">
+                        ---
+                    </div>
+
+                    <button onclick="rotateSafeDial(1)" class="w-12 h-12 sm:w-14 sm:h-14 bg-amber-500/20 hover:bg-amber-500/40 border-2 border-amber-400/60 rounded-2xl flex items-center justify-center text-amber-300 text-xl transition active:scale-90" title="التالي">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                </div>
+
+                <!-- أزرار اختيار سريعة أسفل الترس -->
+                <div id="dialQuickPills" class="flex flex-wrap justify-center gap-2 mt-4">
+                    <!-- يتم توليد أزرار التبديل السريع هنا -->
+                </div>
+            </div>
+
+            <button onclick="checkSafeCode()" class="btn-hero py-4 px-8 sm:px-10 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 font-black text-base sm:text-lg rounded-2xl shadow-xl transition active:scale-95 inline-flex items-center gap-2.5">
+                <span>افتح القفل 🔓</span>
+            </button>
+        </section>
+
+        <!-- 4. شاشة الاحتفال بالنصر النهائي -->
+        <section id="screen-victory" class="hidden w-full max-w-xl bg-slate-900/95 backdrop-blur-2xl rounded-3xl p-7 sm:p-9 border-4 border-amber-400 shadow-[0_0_50px_rgba(251,191,36,0.45)] text-center">
+            <div class="w-24 h-24 bg-gradient-to-tr from-amber-400 to-yellow-200 text-slate-950 rounded-full flex items-center justify-center mx-auto text-5xl mb-4 shadow-xl animate-bounce">
+                🏆
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-black text-white mb-2">
+                عبقري الفيزياء والكيمياء 🏆
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base mb-6">
+                أحسنت يا بطل! لقد أتممت جميع الأسئلة العشرة لوحدة المادة والطاقة بنجاح باهر!
+            </p>
+
+            <div class="bg-slate-800/90 border border-slate-700 p-5 rounded-2xl mb-6 grid grid-cols-2 gap-4 items-center">
+                <div>
+                    <span class="block text-xs font-bold text-slate-400 mb-1">مجموع الجواهر</span>
+                    <span class="text-3xl font-black text-cyan-400" id="finalScoreVal">0</span>
+                </div>
+                <div class="border-r border-slate-700">
+                    <span class="block text-xs font-bold text-slate-400 mb-1">الوسام المستحق</span>
+                    <span class="text-base sm:text-lg font-black text-amber-300">عالم الفضاء الأول 🌟</span>
+                </div>
+            </div>
+
+            <button onclick="restartWholeGame()" class="w-full py-4 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-600 hover:opacity-95 text-slate-950 font-black text-lg rounded-2xl shadow-xl transition active:scale-95 flex items-center justify-center gap-2">
+                <span>العب مرة أخرى 🔄</span>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="max-w-4xl mx-auto w-full text-center text-slate-400 text-xs font-bold py-1.5 z-10">
+        وحدة المادة والطاقة • الصف الثاني الإعدادي • لعبة تعليمية تفاعلية ⚛️🚀
+    </footer>
+
+    <!-- نافذة التغذية الراجعة التفاعلية -->
+    <div id="feedbackModal" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div id="feedbackCard" class="bg-slate-900 border-4 border-emerald-400 rounded-3xl p-6 sm:p-7 max-w-sm w-full text-center shadow-2xl">
+            <div id="feedbackIcon" class="w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl mb-3 shadow-lg"></div>
+            <h3 id="feedbackTitle" class="text-xl sm:text-2xl font-black text-white mb-2"></h3>
+            <p id="feedbackText" class="text-slate-300 text-sm mb-5 leading-relaxed"></p>
+            <button id="feedbackBtn" class="w-full py-3 rounded-xl font-black text-base shadow-lg transition active:scale-95">
+                متابعة 🚀
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================================================
+           1. بيانات الأسئلة العشرة لوحدة المادة والطاقة (الصف الثاني الإعدادي)
+           ========================================================================= */
+
+        // المرحلة الأولى: مدفع الليزر والشهب (الأسئلة 1 إلى 4)
+        const stage1Questions = [
+            {
+                qNum: 1,
+                question: "1. أيٌّ من الحالات الآتية للمادة لها شكل وحجم ثابتان؟",
+                options: [
+                    { text: "السائلة", correct: false },
+                    { text: "الغازية", correct: false },
+                    { text: "الصلبة", correct: true },
+                    { text: "البلازما", correct: false }
+                ],
+                explanation: "إجابة رائعة! المادة الصلبة تتميز بأن لها شكلاً ثابتاً وحجماً ثابتاً لتقارب جزيئاتها."
+            },
+            {
+                qNum: 2,
+                question: "2. الخاصية التي تعبّر عن مقاومة السوائل للانسياب تُسمى:",
+                options: [
+                    { text: "الانتشار", correct: false },
+                    { text: "اللزوجة", correct: true },
+                    { text: "الانضغاط", correct: false },
+                    { text: "التبخر", correct: false }
+                ],
+                explanation: "ممتاز! اللزوجة هي الخاصية التي تعبّر عن مقاومة السوائل للانسياب والجريان."
+            },
+            {
+                qNum: 3,
+                question: "3. تحول المادة من الحالة الصلبة إلى الحالة السائلة يُسمى:",
+                options: [
+                    { text: "التجمد", correct: false },
+                    { text: "التكثف", correct: false },
+                    { text: "الانصهار", correct: true },
+                    { text: "التسامي", correct: false }
+                ],
+                explanation: "أحسنت! الانصهار هو تحول المادة بالتسخين من الحالة الصلبة إلى الحالة السائلة."
+            },
+            {
+                qNum: 4,
+                question: "4. أي المواد الآتية أسرع في الانتشار؟",
+                options: [
+                    { text: "المواد الصلبة", correct: false },
+                    { text: "المواد السائلة", correct: false },
+                    { text: "المواد الغازية", correct: true },
+                    { text: "جميعها بنفس السرعة", correct: false }
+                ],
+                explanation: "عبقري! المواد الغازية أسرع في الانتشار لكبر المسافات البينية بين جزيئاتها."
+            }
+        ];
+
+        // المرحلة الثانية: بطاقات المختبر السحرية (الأسئلة 5 إلى 7 + زوج تلخيصي من الدرس)
+        const stage2MemoryPairs = [
+            {
+                pairId: "q5",
+                qNum: 5,
+                prompt: "عند تسخين سائل حتى يصل إلى درجة غليانه فإنه:",
+                answer: "يتحول إلى غاز 💨",
+                isBonus: false
+            },
+            {
+                pairId: "q6",
+                qNum: 6,
+                prompt: "العامل الذي يؤدي إلى زيادة سرعة التبخر هو:",
+                answer: "زيادة مساحة السطح 🌊",
+                isBonus: false
+            },
+            {
+                pairId: "q7",
+                qNum: 7,
+                prompt: "تتميز الغازات عن السوائل والمواد الصلبة بأنها:",
+                answer: "قابلة للانضغاط بسهولة 🎈",
+                isBonus: false
+            },
+            {
+                pairId: "bonus",
+                qNum: null,
+                prompt: "مقاومة السوائل للانسياب والجريان تُعرف بـ:",
+                answer: "خاصية اللزوجة 🧪",
+                isBonus: true
+            }
+        ];
+
+        // المرحلة الثالثة: فك شفرة الخزنة الفضائية (الأسئلة 8 إلى 10)
+        const stage3SafeQuestions = [
+            {
+                qNum: 8,
+                question: "8. تحول المادة من الحالة الغازية إلى الحالة السائلة يُسمى:",
+                choices: ["التبخر", "التكثف", "الانصهار", "التسامي"],
+                correctAnswer: "التكثف",
+                explanation: "صحيح 100%! التكثف هو تحول المادة بالتبريد من الحالة الغازية إلى الحالة السائلة."
+            },
+            {
+                qNum: 9,
+                question: "9. عند زيادة الارتفاع عن سطح البحر فإن درجة غليان الماء:",
+                choices: ["تزداد", "تقل", "لا تتغير", "تصبح صفرًا"],
+                correctAnswer: "تقل",
+                explanation: "رائع! كلما ارتفعنا عن سطح البحر قلّ الضغط الجوي وبالتالي تقل درجة غليان الماء."
+            },
+            {
+                qNum: 10,
+                question: "10. أثناء انصهار مادة نقية تظل درجة حرارتها:",
+                choices: ["ثابتة", "في زيادة مستمرة", "في انخفاض مستمر", "متغيرة بصورة عشوائية"],
+                correctAnswer: "ثابتة",
+                explanation: "مذهل! تظل درجة حرارة المادة النقية ثابتة أثناء عملية الانصهار حتى تتحول بالكامل لسائل."
+            }
+        ];
+
+        /* =========================================================================
+           2. محرك الصوت المدمج (Web Audio API بدون روابط خارجية)
+           ========================================================================= */
+        class SpaceAudioEngine {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+            }
+
+            ensureContext() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioCtx();
+                }
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            toggleMute() {
+                this.muted = !this.muted;
+                const btn = document.getElementById('muteBtn');
+                btn.innerHTML = this.muted
+                    ? '<i class="fa-solid fa-volume-xmark text-rose-400"></i>'
+                    : '<i class="fa-solid fa-volume-high"></i>';
+            }
+
+            laserShot() {
+                if (this.muted) return;
+                this.ensureContext();
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(920, now);
+                osc.frequency.exponentialRampToValueAtTime(140, now + 0.18);
+                gain.gain.setValueAtTime(0.25, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.18);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.18);
+            }
+
+            meteorExplosion() {
+                if (this.muted) return;
+                this.ensureContext();
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(160, now);
+                osc.frequency.exponentialRampToValueAtTime(38, now + 0.32);
+                gain.gain.setValueAtTime(0.32, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.32);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.32);
+            }
+
+            cardFlip() {
+                if (this.muted) return;
+                this.ensureContext();
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(420, now);
+                osc.frequency.exponentialRampToValueAtTime(760, now + 0.08);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            }
+
+            gearClick() {
+                if (this.muted) return;
+                this.ensureContext();
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(850, now);
+                gain.gain.setValueAtTime(0.14, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.045);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.045);
+            }
+
+            victoryFanfare() {
+                if (this.muted) return;
+                this.ensureContext();
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, i) => {
+                    const now = this.ctx.currentTime + i * 0.09;
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now);
+                    gain.gain.setValueAtTime(0.22, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.28);
+                });
+            }
+
+            wrongBuzz() {
+                if (this.muted) return;
+                this.ensureContext();
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(175, now);
+                osc.frequency.linearRampToValueAtTime(105, now + 0.24);
+                gain.gain.setValueAtTime(0.26, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.24);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.24);
+            }
+        }
+
+        const audioFx = new SpaceAudioEngine();
+
+        /* =========================================================================
+           3. إدارة الحالة العامة والتنقل
+           ========================================================================= */
+        let score = 0;
+        let streak = 0;
+        let currentQNumber = 1;
+
+        function updateTopBar(stageNum, qNum) {
+            currentQNumber = qNum;
+            document.getElementById('stageIndicator').textContent = `${stageNum}/3`;
+            document.getElementById('questionCounter').textContent = `${qNum} / 10`;
+        }
+
+        function awardPoints(basePoints) {
+            streak++;
+            const comboBonus = streak > 1 ? (streak - 1) * 15 : 0;
+            score += basePoints + comboBonus;
+            document.getElementById('totalScore').textContent = score;
+            document.getElementById('streakDisplay').textContent = `${streak}x`;
+        }
+
+        function breakStreak() {
+            streak = 0;
+            document.getElementById('streakDisplay').textContent = `0x`;
+        }
+
+        function switchScreen(screenId) {
+            ['screen-start', 'screen-meteor', 'screen-memory', 'screen-safe', 'screen-victory'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        function showFeedback(isSuccess, title, message, onContinue) {
+            const modal = document.getElementById('feedbackModal');
+            const card = document.getElementById('feedbackCard');
+            const icon = document.getElementById('feedbackIcon');
+            const titleEl = document.getElementById('feedbackTitle');
+            const textEl = document.getElementById('feedbackText');
+            const btn = document.getElementById('feedbackBtn');
+
+            if (isSuccess) {
+                card.className = "bg-slate-900 border-4 border-emerald-400 rounded-3xl p-6 sm:p-7 max-w-sm w-full text-center shadow-2xl";
+                icon.className = "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl mb-3 bg-emerald-500/20 text-emerald-300 border-2 border-emerald-400/60";
+                icon.innerHTML = '<i class="fa-solid fa-check"></i>';
+                btn.className = "w-full py-3 rounded-xl font-black text-slate-950 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:opacity-95 shadow-lg";
+                btn.textContent = "التالي 🚀";
+            } else {
+                card.className = "bg-slate-900 border-4 border-rose-500 rounded-3xl p-6 sm:p-7 max-w-sm w-full text-center shadow-2xl";
+                icon.className = "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl mb-3 bg-rose-500/20 text-rose-400 border-2 border-rose-500/60";
+                icon.innerHTML = '<i class="fa-solid fa-rotate-right"></i>';
+                btn.className = "w-full py-3 rounded-xl font-black text-white bg-gradient-to-r from-rose-500 to-orange-600 hover:opacity-95 shadow-lg";
+                btn.textContent = "حاول مرة أخرى 💪";
+            }
+
+            titleEl.textContent = title;
+            textEl.textContent = message;
+
+            btn.onclick = () => {
+                modal.classList.add('hidden');
+                if (onContinue) onContinue();
+            };
+
+            modal.classList.remove('hidden');
+        }
+
+        function startFullAdventure() {
+            score = 0;
+            streak = 0;
+            document.getElementById('totalScore').textContent = '0';
+            document.getElementById('streakDisplay').textContent = '0x';
+            initStage1Meteor();
+        }
+
+        function restartWholeGame() {
+            startFullAdventure();
+        }
+
+        /* =========================================================================
+           4. المرحلة الأولى: مدفع الليزر والشهب الفضائية (الأسئلة 1 إلى 4)
+           ========================================================================= */
+        let s1Index = 0;
+        let s1Locked = false;
+
+        function initStage1Meteor() {
+            s1Index = 0;
+            switchScreen('screen-meteor');
+            renderStage1Question();
+        }
+
+        function renderStage1Question() {
+            s1Locked = false;
+            const item = stage1Questions[s1Index];
+            updateTopBar(1, item.qNum);
+            document.getElementById('meteorSubProgress').textContent = `التحدي ${s1Index + 1} من ${stage1Questions.length}`;
+            document.getElementById('meteorQuestionText').textContent = item.question;
+
+            const grid = document.getElementById('meteorGrid');
+            grid.innerHTML = '';
+
+            const meteorStyles = [
+                'from-rose-600/90 to-orange-600/90 border-amber-300',
+                'from-cyan-600/90 to-blue-700/90 border-cyan-300',
+                'from-purple-600/90 to-fuchsia-700/90 border-pink-300',
+                'from-indigo-600/90 to-violet-700/90 border-indigo-300'
+            ];
+
+            item.options.forEach((opt, idx) => {
+                const meteorBtn = document.createElement('button');
+                meteorBtn.type = 'button';
+                meteorBtn.className = `meteor-item cursor-pointer bg-gradient-to-br ${meteorStyles[idx % meteorStyles.length]} border-2 rounded-2xl p-4 sm:p-5 text-white font-black text-base sm:text-lg shadow-[0_0_20px_rgba(56,189,248,0.25)] hover:scale-105 active:scale-95 transition flex items-center justify-center gap-3`;
+                meteorBtn.style.animationDelay = `${idx * 0.35}s`;
+                meteorBtn.innerHTML = `<span class="text-2xl">☄️</span><span>${opt.text}</span>`;
+
+                meteorBtn.onclick = () => handleMeteorShoot(meteorBtn, opt, item);
+                grid.appendChild(meteorBtn);
+            });
+        }
+
+        function fireLaserEffect(targetEl) {
+            const arena = document.getElementById('meteorArena');
+            const cannon = document.getElementById('spaceshipCannon');
+            const arenaRect = arena.getBoundingClientRect();
+            const targetRect = targetEl.getBoundingClientRect();
+            const cannonRect = cannon.getBoundingClientRect();
+
+            const startX = (cannonRect.left + cannonRect.width / 2) - arenaRect.left;
+            const startY = (cannonRect.top + cannonRect.height / 2) - arenaRect.top;
+            const endX = (targetRect.left + targetRect.width / 2) - arenaRect.left;
+            const endY = (targetRect.top + targetRect.height / 2) - arenaRect.top;
+
+            const dx = endX - startX;
+            const dy = endY - startY;
+            const length = Math.hypot(dx, dy);
+            const angleDeg = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+
+            cannon.style.transform = `rotate(${angleDeg}deg) scale(1.18)`;
+            setTimeout(() => {
+                cannon.style.transform = 'rotate(0deg) scale(1)';
+            }, 350);
+
+            const beam = document.createElement('div');
+            beam.className = 'laser-beam';
+            beam.style.left = `${startX - 3}px`;
+            beam.style.bottom = `${arenaRect.height - startY}px`;
+            beam.style.height = `${length}px`;
+            beam.style.transform = `rotate(${angleDeg}deg)`;
+            arena.appendChild(beam);
+
+            setTimeout(() => {
+                beam.style.opacity = '0';
+                setTimeout(() => beam.remove(), 250);
+            }, 180);
+        }
+
+        function handleMeteorShoot(meteorEl, option, qData) {
+            if (s1Locked) return;
+            audioFx.laserShot();
+            fireLaserEffect(meteorEl);
+
+            if (option.correct) {
+                s1Locked = true;
+                audioFx.meteorExplosion();
+                audioFx.victoryFanfare();
+                meteorEl.classList.add('ring-4', 'ring-emerald-400', 'scale-110');
+                awardPoints(100);
+
+                confetti({ particleCount: 55, spread: 60, origin: { y: 0.65 } });
+
+                setTimeout(() => {
+                    showFeedback(true, "إصابة مباشرة بالليزر! 💥🎯", qData.explanation, () => {
+                        s1Index++;
+                        if (s1Index < stage1Questions.length) {
+                            renderStage1Question();
+                        } else {
+                            initStage2Memory();
+                        }
+                    });
+                }, 320);
+            } else {
+                audioFx.wrongBuzz();
+                breakStreak();
+                meteorEl.classList.add('shake-anim', 'opacity-60');
+                setTimeout(() => meteorEl.classList.remove('shake-anim'), 420);
+                showFeedback(false, "أخطأت الهدف! ☄️", "هذا الشهاب يحمل إجابة غير صحيحة، صوّب مدفعك نحو شهاب آخر!", null);
+            }
+        }
+
+        /* =========================================================================
+           5. المرحلة الثانية: بطاقات المختبر السحرية (الأسئلة 5 إلى 7)
+           ========================================================================= */
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let memoryBusy = false;
+
+        function initStage2Memory() {
+            switchScreen('screen-memory');
+            updateTopBar(2, 5);
+            flippedCards = [];
+            matchedPairs = 0;
+            memoryBusy = false;
+            document.getElementById('memorySubProgress').textContent = `تمت مطابقة: 0 / ${stage2MemoryPairs.length} أزواج`;
+
+            // بناء البطاقات الثمانية (4 أسئلة/عبارات + 4 إجابات)
+            const deck = [];
+            stage2MemoryPairs.forEach(pair => {
+                deck.push({
+                    pairId: pair.pairId,
+                    qNum: pair.qNum,
+                    type: 'prompt',
+                    label: pair.prompt,
+                    badge: pair.qNum ? `سؤال ${pair.qNum}` : 'معلومة إضافية'
+                });
+                deck.push({
+                    pairId: pair.pairId,
+                    qNum: pair.qNum,
+                    type: 'answer',
+                    label: pair.answer,
+                    badge: 'النتيجة / الخاصية'
+                });
+            });
+
+            // خلط البطاقات عشوائياً
+            deck.sort(() => Math.random() - 0.5);
+
+            const grid = document.getElementById('cardsGrid');
+            grid.innerHTML = '';
+
+            deck.forEach((cardData, index) => {
+                const card = document.createElement('div');
+                card.className = 'flip-card h-32 sm:h-36 cursor-pointer';
+                card.dataset.pairId = cardData.pairId;
+                card.dataset.qNum = cardData.qNum || '';
+                card.dataset.cardType = cardData.type;
+
+                const backGradient = cardData.type === 'prompt'
+                    ? 'from-indigo-600 to-blue-700 border-cyan-300'
+                    : 'from-pink-600 to-rose-700 border-amber-300';
+
+                card.innerHTML = `
+                    <div class="flip-card-inner w-full h-full relative rounded-2xl shadow-lg">
+                        <!-- وجه البطاقة المغلق -->
+                        <div class="flip-front absolute inset-0 bg-gradient-to-br from-slate-800 via-purple-950 to-indigo-950 border-2 border-pink-400/50 rounded-2xl flex flex-col items-center justify-center p-2 text-center shadow-inner hover:border-amber-300 transition">
+                            <span class="text-2xl sm:text-3xl mb-1">🔬</span>
+                            <span class="text-[11px] font-extrabold text-pink-200">بطاقة مختبر #${index + 1}</span>
+                        </div>
+                        <!-- وجه البطاقة المكشوف -->
+                        <div class="flip-back absolute inset-0 bg-gradient-to-br ${backGradient} border-2 rounded-2xl flex flex-col items-center justify-center p-2.5 text-center shadow-xl">
+                            <span class="text-[10px] font-black bg-black/30 px-2 py-0.5 rounded-full text-amber-200 mb-1.5">${cardData.badge}</span>
+                            <p class="text-xs sm:text-sm font-black text-white leading-snug">${cardData.label}</p>
+                        </div>
+                    </div>
+                `;
+
+                card.onclick = () => onMemoryCardTap(card);
+                grid.appendChild(card);
+            });
+        }
+
+        function onMemoryCardTap(card) {
+            if (memoryBusy || card.classList.contains('flipped') || card.dataset.matched === 'true') return;
+
+            audioFx.cardFlip();
+            card.classList.add('flipped');
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                memoryBusy = true;
+                const [first, second] = flippedCards;
+                const isMatch = (first.dataset.pairId === second.dataset.pairId) && (first.dataset.cardType !== second.dataset.cardType);
+
+                if (isMatch) {
+                    setTimeout(() => {
+                        audioFx.victoryFanfare();
+                        first.dataset.matched = 'true';
+                        second.dataset.matched = 'true';
+
+                        first.querySelector('.flip-back').className = 'flip-back absolute inset-0 bg-gradient-to-br from-emerald-600 to-teal-700 border-2 border-emerald-200 rounded-2xl flex flex-col items-center justify-center p-2.5 text-center shadow-xl ring-4 ring-emerald-400/60';
+                        second.querySelector('.flip-back').className = 'flip-back absolute inset-0 bg-gradient-to-br from-emerald-600 to-teal-700 border-2 border-emerald-200 rounded-2xl flex flex-col items-center justify-center p-2.5 text-center shadow-xl ring-4 ring-emerald-400/60';
+
+                        matchedPairs++;
+                        awardPoints(120);
+                        confetti({ particleCount: 45, spread: 50, origin: { y: 0.6 } });
+
+                        // تحديث عداد الأسئلة بين 5 و 7
+                        const progressQ = Math.min(7, 4 + matchedPairs);
+                        updateTopBar(2, progressQ);
+                        document.getElementById('memorySubProgress').textContent = `تمت مطابقة: ${matchedPairs} / ${stage2MemoryPairs.length} أزواج`;
+
+                        flippedCards = [];
+                        memoryBusy = false;
+
+                        if (matchedPairs === stage2MemoryPairs.length) {
+                            setTimeout(() => {
+                                showFeedback(true, "عبقري المختبر! 🧪✨", "لقد نجحت في مطابقة جميع بطاقات المادة والطاقة بنجاح! هيا إلى المرحلة الأخيرة!", () => {
+                                    initStage3Safe();
+                                });
+                            }, 500);
+                        }
+                    }, 450);
+                } else {
+                    setTimeout(() => {
+                        audioFx.wrongBuzz();
+                        breakStreak();
+                        first.classList.remove('flipped');
+                        second.classList.remove('flipped');
+                        flippedCards = [];
+                        memoryBusy = false;
+                    }, 1050);
+                }
+            }
+        }
+
+        /* =========================================================================
+           6. المرحلة الثالثة: فك شفرة الخزنة الفضائية (الأسئلة 8 إلى 10)
+           ========================================================================= */
+        let s3Index = 0;
+        let dialIdx = 0;
+
+        function initStage3Safe() {
+            s3Index = 0;
+            switchScreen('screen-safe');
+            renderStage3Safe();
+        }
+
+        function renderStage3Safe() {
+            const item = stage3SafeQuestions[s3Index];
+            dialIdx = 0;
+            updateTopBar(3, item.qNum);
+            document.getElementById('safeSubProgress').textContent = `القفل ${s3Index + 1} من ${stage3SafeQuestions.length}`;
+            document.getElementById('safeQuestionText').textContent = item.question;
+
+            // إنشاء أزرار التبديل السريع أسفل الترس
+            const pillsContainer = document.getElementById('dialQuickPills');
+            pillsContainer.innerHTML = '';
+            item.choices.forEach((choiceText, idx) => {
+                const pill = document.createElement('button');
+                pill.type = 'button';
+                pill.textContent = choiceText;
+                pill.className = 'text-xs font-bold px-3 py-1.5 rounded-xl border border-amber-400/40 bg-slate-900 hover:bg-amber-500/20 text-amber-200 transition';
+                pill.onclick = () => {
+                    audioFx.gearClick();
+                    dialIdx = idx;
+                    updateDialText();
+                };
+                pillsContainer.appendChild(pill);
+            });
+
+            updateDialText();
+        }
+
+        function rotateSafeDial(step) {
+            audioFx.gearClick();
+            const item = stage3SafeQuestions[s3Index];
+            dialIdx = (dialIdx + step + item.choices.length) % item.choices.length;
+            updateDialText();
+        }
+
+        function updateDialText() {
+            const item = stage3SafeQuestions[s3Index];
+            const display = document.getElementById('dialDisplay');
+            display.textContent = item.choices[dialIdx];
+
+            // تمييز الزر المختار في الشريط السريع
+            const pills = document.getElementById('dialQuickPills').children;
+            Array.from(pills).forEach((btn, i) => {
+                if (i === dialIdx) {
+                    btn.className = 'text-xs font-black px-3 py-1.5 rounded-xl border-2 border-amber-300 bg-amber-400 text-slate-950 transition shadow';
+                } else {
+                    btn.className = 'text-xs font-bold px-3 py-1.5 rounded-xl border border-amber-400/40 bg-slate-900 hover:bg-amber-500/20 text-amber-200 transition';
+                }
+            });
+        }
+
+        function checkSafeCode() {
+            const item = stage3SafeQuestions[s3Index];
+            const selected = item.choices[dialIdx];
+
+            if (selected === item.correctAnswer) {
+                audioFx.victoryFanfare();
+                awardPoints(150);
+                confetti({ particleCount: 75, spread: 70, origin: { y: 0.6 } });
+
+                showFeedback(true, "تم فك شفرة الخزنة! 🔓💎", item.explanation, () => {
+                    s3Index++;
+                    if (s3Index < stage3SafeQuestions.length) {
+                        renderStage3Safe();
+                    } else {
+                        showVictoryCelebration();
+                    }
+                });
+            } else {
+                audioFx.wrongBuzz();
+                breakStreak();
+                const box = document.getElementById('safeDialBox');
+                box.classList.add('shake-anim');
+                setTimeout(() => box.classList.remove('shake-anim'), 420);
+                showFeedback(false, "الشفرة غير صحيحة! 🔒", "القفل لم يُفتح، أدر الترس لاختيار إجابة أخرى ثم اضغط افتح القفل!", null);
+            }
+        }
+
+        /* =========================================================================
+           7. شاشة الاحتفال بالنصر النهائي
+           ========================================================================= */
+        function showVictoryCelebration() {
+            switchScreen('screen-victory');
+            audioFx.victoryFanfare();
+            document.getElementById('finalScoreVal').textContent = score;
+
+            const endTime = Date.now() + 2600;
+            (function launchConfetti() {
+                confetti({
+                    particleCount: 6,
+                    angle: 60,
+                    spread: 65,
+                    origin: { x: 0, y: 0.7 }
+                });
+                confetti({
+                    particleCount: 6,
+                    angle: 120,
+                    spread: 65,
+                    origin: { x: 1, y: 0.7 }
+                });
+                if (Date.now() < endTime) {
+                    requestAnimationFrame(launchConfetti);
+                }
+            })();
+        }
+    </script>
+</body>
+</html>
